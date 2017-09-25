@@ -1706,11 +1706,11 @@
             if (!parsedDate.isValid()) {
                 throw new TypeError('maxDate() Could not parse date parameter: ' + maxDate);
             }
-            if (options.minDate && parsedDate.isBefore(options.minDate)) {
+            if (options.minDate && parsedDate.isBefore(options.minDate, 'day')) {
                 throw new TypeError('maxDate() date parameter is before options.minDate: ' + parsedDate.format(actualFormat));
             }
             options.maxDate = parsedDate;
-            if (options.useCurrent && !options.keepInvalid && date.isAfter(maxDate)) {
+            if (options.useCurrent && !options.keepInvalid && date.isSameOrAfter(maxDate)) {
                 setValue(options.maxDate);
             }
             if (viewDate.isAfter(parsedDate)) {
@@ -1742,11 +1742,11 @@
             if (!parsedDate.isValid()) {
                 throw new TypeError('minDate() Could not parse date parameter: ' + minDate);
             }
-            if (options.maxDate && parsedDate.isAfter(options.maxDate)) {
+            if (options.maxDate && parsedDate.isAfter(options.maxDate, 'day')) {
                 throw new TypeError('minDate() date parameter is after options.maxDate: ' + parsedDate.format(actualFormat));
             }
             options.minDate = parsedDate;
-            if (options.useCurrent && !options.keepInvalid && date.isBefore(minDate)) {
+            if (options.useCurrent && !options.keepInvalid && date.isSameOrBefore(minDate)) {
                 setValue(options.minDate);
             }
             if (viewDate.isBefore(parsedDate)) {
